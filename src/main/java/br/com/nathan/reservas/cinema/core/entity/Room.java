@@ -2,6 +2,7 @@ package br.com.nathan.reservas.cinema.core.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,19 +10,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-import java.time.LocalTime;
+import java.util.List;
 
 @Entity
-@Table(name = "movie")
+@Table(name = "room")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Movie {
+public class Room {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "movie_seq")
-    @SequenceGenerator(name = "movie_seq", sequenceName = "movie_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_seq")
+    @SequenceGenerator(name = "room_seq", sequenceName = "room_seq", allocationSize = 1)
     @Column(name = "id")
     private Long id;
 
@@ -29,8 +30,9 @@ public class Movie {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "duration")
-    private LocalTime duration;
+    @NotEmpty
+    @OneToMany(mappedBy = "room")
+    private List<Chair> chairs;
 
     @Column(name = "created_time")
     @NotNull

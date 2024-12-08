@@ -1,7 +1,6 @@
 package br.com.nathan.reservas.cinema.core.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,28 +8,33 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "movie")
+@Table(name = "session")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Movie {
+public class Session {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "movie_seq")
-    @SequenceGenerator(name = "movie_seq", sequenceName = "movie_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_seq")
+    @SequenceGenerator(name = "room_seq", sequenceName = "room_seq", allocationSize = 1)
     @Column(name = "id")
     private Long id;
 
-    @NotBlank
-    @Column(name = "name")
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
 
-    @Column(name = "duration")
-    private LocalTime duration;
+    @NotNull
+    @Column(name = "begin_hour_date")
+    private LocalDateTime begin;
+
+    @NotNull
+    @Column(name = "end_hour_date")
+    private LocalDateTime end;
 
     @Column(name = "created_time")
     @NotNull

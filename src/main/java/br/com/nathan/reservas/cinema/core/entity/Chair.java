@@ -9,19 +9,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-import java.time.LocalTime;
 
 @Entity
-@Table(name = "movie")
+@Table(name = "chair")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Movie {
+public class Chair {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "movie_seq")
-    @SequenceGenerator(name = "movie_seq", sequenceName = "movie_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "chair_seq")
+    @SequenceGenerator(name = "chair_seq", sequenceName = "chair_seq", allocationSize = 1)
     @Column(name = "id")
     private Long id;
 
@@ -29,8 +28,10 @@ public class Movie {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "duration")
-    private LocalTime duration;
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
 
     @Column(name = "created_time")
     @NotNull
