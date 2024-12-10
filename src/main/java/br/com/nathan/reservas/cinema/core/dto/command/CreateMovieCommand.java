@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalTime;
 
 @Getter
-public class CreateMovie {
+public class CreateMovieCommand {
 
     private Long id;
 
@@ -14,7 +14,7 @@ public class CreateMovie {
 
     private LocalTime duration;
 
-    public CreateMovie(Long id, String name, LocalTime duration) {
+    public CreateMovieCommand(Long id, String name, LocalTime duration) {
         this.id = id;
         this.name = name;
         this.duration = duration;

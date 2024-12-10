@@ -3,23 +3,25 @@ package br.com.nathan.reservas.cinema.core.dto.command;
 import br.com.nathan.reservas.cinema.core.entity.Chair;
 import br.com.nathan.reservas.cinema.core.entity.Room;
 
-public class CreateChair {
+import java.util.List;
+
+public class CreateRoomCommand {
 
     private Long id;
     private String name;
-    private Room room;
+    private List<Chair> chairs;
 
-    public CreateChair(Long id, String name, Room room) {
+    public CreateRoomCommand(Long id, String name, List<Chair> chairs) {
         this.id = id;
         this.name = name;
-        this.room = room;
+        this.chairs = chairs;
     }
 
-    public Chair toEntity() {
-        return Chair.builder()
+    public Room toEntity() {
+        return Room.builder()
                 .id(id)
                 .name(name)
-                .room(room)
+                .chairs(chairs)
                 .build();
     }
 }
