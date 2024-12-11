@@ -1,20 +1,23 @@
 package br.com.nathan.reservas.cinema.core.dto.command;
 
 import br.com.nathan.reservas.cinema.core.entity.Movie;
-import lombok.Getter;
+import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
+import lombok.Data;
 
-import java.time.LocalTime;
+import java.time.Duration;
 
-@Getter
+@Data
+@Builder
 public class CreateMovieCommand {
 
     private Long id;
-
+    @NotNull
     private String name;
+    @NotNull
+    private Duration duration;
 
-    private LocalTime duration;
-
-    public CreateMovieCommand(Long id, String name, LocalTime duration) {
+    public CreateMovieCommand(Long id, String name, Duration duration) {
         this.id = id;
         this.name = name;
         this.duration = duration;

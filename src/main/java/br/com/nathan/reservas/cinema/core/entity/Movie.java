@@ -8,8 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "movie")
@@ -30,7 +30,7 @@ public class Movie {
     private String name;
 
     @Column(name = "duration")
-    private LocalTime duration;
+    private Duration duration;
 
     @Column(name = "created_time")
     @NotNull
